@@ -4,10 +4,12 @@
 	export let data: PageData;
 	let user = data.userdata;
 
-	console.log(user.billing_address);
-
 	let { supabase, session } = data;
 	$: ({ supabase, session } = data);
+
+	const handleSignOut = async () => {
+		await supabase.auth.signOut();
+	};
 </script>
 
 <div class="card max-w-3xl mx-auto p-3">
@@ -58,6 +60,9 @@
 	</form>
 </div>
 
-<pre class="pre">
-	{JSON.stringify(session, null, 2)}
-</pre>
+<button class="btn variant-filled" on:click={handleSignOut}>Sign out</button>
+
+<details>
+	<summary>More data in: session.user</summary>
+	<pre class="pre">{JSON.stringify(session?.user, null, 2)}</pre>
+</details>

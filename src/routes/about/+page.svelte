@@ -1,9 +1,9 @@
 <script>
 	let tableArr = [
-		{ position: 'top', name: 'cool', symbol: '123', weight: '123' },
-		{ position: 'top', name: 'cool', symbol: '123', weight: '123' },
-		{ position: 'top', name: 'cool', symbol: '123', weight: '123' },
-		{ position: 'top', name: 'cool', symbol: '123', weight: '123' }
+		{ Task: 'Setup', Date: '07-23', Progress: '100%', weight: '10%' },
+		{ Task: 'UI', Date: '07-23', Progress: '50%', weight: '123' },
+		{ Task: 'top', Date: 'cool', Progress: '123', weight: '123' },
+		{ Task: 'top', Date: 'cool', Progress: '123', weight: '123' }
 	];
 	let totalWeight = '100';
 </script>
@@ -13,18 +13,18 @@
 	<table class="table table-hover">
 		<thead>
 			<tr>
-				<th>Position</th>
-				<th>Name</th>
-				<th>Symbol</th>
+				<th>Task</th>
+				<th>Date</th>
+				<th>Progress</th>
 				<th>Weight</th>
 			</tr>
 		</thead>
 		<tbody>
 			{#each tableArr as row, i}
 				<tr>
-					<td>{row.position}</td>
-					<td>{row.name}</td>
-					<td>{row.symbol}</td>
+					<td>{row.Task}</td>
+					<td>{row.Date}</td>
+					<td>{row.Progress}</td>
 					<td>{row.weight}</td>
 				</tr>
 			{/each}

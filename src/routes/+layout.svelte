@@ -3,7 +3,15 @@
 	import '@skeletonlabs/skeleton/themes/theme-skeleton.css';
 	import '@skeletonlabs/skeleton/styles/skeleton.css';
 	import '../app.postcss';
+	import hljs from 'highlight.js';
+	import 'highlight.js/styles/github-dark.css';
+	import { storeHighlightJs } from '@skeletonlabs/skeleton';
+	storeHighlightJs.set(hljs);
 	import { AppShell } from '@skeletonlabs/skeleton';
+
+	//Breadcrumbs
+	import { page } from '$app/stores';
+	import Breadcrumbs from '$lib/components/ui/Breadcrumbs.svelte';
 
 	// Authentication on Client Side
 	import { invalidate } from '$app/navigation';
@@ -32,15 +40,16 @@
 		<nav class="list-nav">
 			<ul>
 				<li><a href="/">Home</a></li>
-				<li><a href="/about">About</a></li>
 				<li><a href={session ? '/profile' : '/auth'}>Account</a></li>
 				<li><a href="/products">Products</a></li>
 				<li><a href="/subscription">Subscription</a></li>
+				<li><a href="/about">About</a></li>
 			</ul>
 		</nav>
 		<!-- --- -->
 	</svelte:fragment>
 	<div class="container mx-auto p-8 space-y-8">
+		<Breadcrumbs path={$page.url.pathname} />
 		<slot />
 	</div>
 </AppShell>

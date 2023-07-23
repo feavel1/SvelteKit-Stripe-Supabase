@@ -1,28 +1,32 @@
 <script lang="ts">
-	import { CodeBlock } from '@skeletonlabs/skeleton';
-
 	export let data;
-	let { supabase, session } = data;
-	$: ({ supabase, session } = data);
-
-	const handleSignOut = async () => {
-		await supabase.auth.signOut();
-	};
+	let { session } = data;
+	$: ({ session } = data);
 </script>
 
-<h1 class="h1">Account Page</h1>
+<h1 class="h1">Profile Overview</h1>
 <section>
 	{#if !session}
 		<div>Not logged in</div>
 		<a href="/auth" class="border-l-pink-200 btn variant-filled">Return to login</a>
 	{:else}
-		<a href="/profile/settings">Settings</a>
-		<CodeBlock language="bash" code={`Located at src/routes/profile.`} />
-		<div>Logged in as: {session.user.email}</div>
-		<div class="block">
-			<p>user:</p>
-			<pre class="pre">{JSON.stringify(session.user, null, 2)}</pre>
+		<div class="card mb-4">
+			<h1 class="card-header h3">Current plan:</h1>
+			<p class="card-footer">SVIP</p>
 		</div>
-		<button class="btn variant-filled" on:click={handleSignOut}>Sign out</button>
+
+		<div class="card mb-4">
+			<h1 class="card-header h3">Logged in as:</h1>
+			<p class="card-footer">
+				{session.user.email}
+			</p>
+		</div>
+
+		<a href="/profile/settings" class="btn variant-filled-primary">Settings</a>
+
+		<details>
+			<summary>More data in: session.user</summary>
+			<pre class="pre">{JSON.stringify(session.user, null, 2)}</pre>
+		</details>
 	{/if}
 </section>

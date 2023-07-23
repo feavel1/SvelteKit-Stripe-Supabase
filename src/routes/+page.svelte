@@ -1,5 +1,5 @@
-<h1 class="h1">Hello Skeleton</h1>
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+<h1 class="h1">Hello 4S</h1>
+<p>A Svelte, Supabase, Stripe, SkeletonUI starter.</p>
 <section>
 	<a class="btn variant-filled-primary" href="https://kit.svelte.dev/">SvelteKit</a>
 	<a class="btn variant-filled-secondary" href="https://tailwindcss.com/">Tailwind</a>
