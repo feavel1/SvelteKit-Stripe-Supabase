@@ -10,7 +10,7 @@ const stripe = new initStripe(STRIPE_SECRET as string, {
 });
 
 export const POST = async ({ request }) => {
-	console.log(request.body);
+	console.log(request.json());
 
 	const customer = await stripe.customers.create({
 		name: request.body!.record.id
