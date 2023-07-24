@@ -22,13 +22,13 @@
 			</p>
 		</div>
 
-		<a href="/api/createStripeCustomer" class="btn variant-filled-secondary">
+		<a href="/api/create-stripe-customer" class="btn variant-filled-secondary">
 			Create Stripe Customer
 		</a>
 		<a href="/profile/settings" class="btn variant-filled-primary">Settings</a>
 
 		<details>
-			<summary>More data in: session.user</summary>
+			<summary>More data in : session.user</summary>
 			<pre class="pre">{JSON.stringify(session.user, null, 2)}</pre>
 		</details>
 	{/if}
