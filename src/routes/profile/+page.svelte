@@ -22,6 +22,9 @@
 			</p>
 		</div>
 
+		<a href="/api/createStripeCustomer" class="btn variant-filled-secondary">
+			Create Stripe Customer
+		</a>
 		<a href="/profile/settings" class="btn variant-filled-primary">Settings</a>
 
 		<details>

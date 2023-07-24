@@ -1,1 +1,0 @@
-import initStripe from 'stripe';
