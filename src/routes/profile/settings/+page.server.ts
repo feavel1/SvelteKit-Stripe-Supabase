@@ -12,14 +12,14 @@ export const actions: Actions = {
 
 		const full_name = formData.get('full_name');
 		const username = formData.get('username');
-		// const address = formData.get('address');
+		const address = formData.get('address');
 
 		const { data, error: createPostError } = await supabase
 			.from('users')
 			.update({
 				full_name: full_name,
-				username: username
-				// billing_address: address
+				username: username,
+				billing_address: address
 			})
 			.eq('id', session.user.id)
 			.select();

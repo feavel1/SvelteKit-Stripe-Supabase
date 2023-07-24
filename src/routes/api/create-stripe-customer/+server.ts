@@ -10,13 +10,15 @@ const stripe = new initStripe(STRIPE_SECRET as string, {
 });
 
 export const POST = async ({ request }) => {
-	const insertUserRecord = await request.json();
+	const insertedUserRecord = await request.json();
+
 	const customer = await stripe.customers.create({
-		name: insertUserRecord.record.id
+		name: insertedUserRecord.record.id
 	});
+
 	await supabase
 		.from('customers')
-		.insert({ id: insertUserRecord.record.id, stripe_customer_id: customer.id })
+		.insert({ id: insertedUserRecord.record.id, stripe_customer_id: customer.id })
 		.select();
 
 	return json({

@@ -26,9 +26,6 @@
 			</p>
 		</div>
 
-		<a href="/api/create-stripe-customer" class="btn variant-filled-secondary">
-			Create Stripe Customer
-		</a>
 		<a href="/profile/settings" class="btn variant-filled-primary">Settings</a>
 		<button class="btn variant-filled" on:click={handleSignOut}>Sign out</button>
 
