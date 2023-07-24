@@ -1,7 +1,11 @@
 <script lang="ts">
 	export let data;
-	let { session } = data;
-	$: ({ session } = data);
+	let { supabase, session } = data;
+	$: ({ session, supabase } = data);
+
+	const handleSignOut = async () => {
+		await supabase.auth.signOut();
+	};
 </script>
 
 <h1 class="h1">Profile Overview</h1>
@@ -26,6 +30,7 @@
 			Create Stripe Customer
 		</a>
 		<a href="/profile/settings" class="btn variant-filled-primary">Settings</a>
+		<button class="btn variant-filled" on:click={handleSignOut}>Sign out</button>
 
 		<details>
 			<summary>More data in : session.user</summary>
