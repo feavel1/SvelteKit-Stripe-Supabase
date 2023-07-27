@@ -20,7 +20,7 @@ const relevantEvents = new Set([
 ]);
 
 export async function POST({ request }: any) {
-	const body = await request.json();
+	const body = await request.buffer();
 
 	const sig = request.headers.get('Stripe-Signature') as string;
 
