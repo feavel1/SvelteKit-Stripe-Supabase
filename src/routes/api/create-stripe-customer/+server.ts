@@ -9,7 +9,7 @@ const stripe = new initStripe(STRIPE_SECRET as string, {
 	apiVersion: '2022-11-15'
 });
 
-export const POST = async ({ request }) => {
+export const POST = async ({ request }: any) => {
 	const insertedUserRecord = await request.json();
 
 	const customer = await stripe.customers.create({

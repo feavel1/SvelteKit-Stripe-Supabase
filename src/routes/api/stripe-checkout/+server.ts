@@ -1,45 +1,88 @@
-import type { RequestHandler } from './$types';
-import Stripe from 'stripe';
+import { stripe } from '$lib/stripe/stripe';
+import { createOrRetrieveCustomer } from '$lib/utils/supabase-admin';
+import { getURL } from '$lib/utils/helpers';
 
-const SECRET_STRIPE_KEY =
-	'sk_test_51LfAvvGEQ8u28rQ5IvVpV2iXwMEIRvDvMNLTyzfM6eXlxQZpLlyrXFjiRP0Nj64t7EDcXm3tnDxnEvShrmCwUDgW00TaZN1cO8';
-const stripe = new Stripe(SECRET_STRIPE_KEY, {
-	apiVersion: '2022-11-15'
-});
+export async function POST({ request, locals: { getSession } }: any) {
+	if (request.method === 'POST') {
+		// 1. Destructure the price and quantity from the POST body
+		const { price, quantity = 1, metadata = {} } = await request.json();
 
-// localhost:5173/api/stripeCheckout
+		try {
+			// 2. Get the user session from Supabase auth
+			const supabaseSession = await getSession();
 
-// POST /stripeCheckout data: items
-// return -> url created by Stripe for our user to use
+			// 3. Retrieve or create the customer in Stripe
+			const customer = await createOrRetrieveCustomer({
+				uuid: supabaseSession?.user.id || '',
+				email: supabaseSession?.user.email || ''
+			});
 
-export const POST: RequestHandler = async ({ request }) => {
-	// items: [ { id: "1", quantity: 6 }, { id: "2", quantity: 3 } ]
-	const data = await request.json();
-	const items = data.items;
-	console.log(items);
-	/*
-        we have: [ { id: "1", quantity: 6 }, { id: "2", quantity: 3 } ]
-        stripe wants: [ { price: "1", quantity: 6 }, { price: "2", quantity: 3 } ]
-    */
+			// 4. Create a checkout session in Stripe
+			let session;
+			if (price.type === 'recurring') {
+				session = await stripe.checkout.sessions.create({
+					payment_method_types: ['card'],
+					billing_address_collection: 'required',
+					customer,
+					customer_update: {
+						address: 'auto'
+					},
+					line_items: [
+						{
+							price: price.id,
+							quantity
+						}
+					],
+					mode: 'subscription',
+					allow_promotion_codes: true,
+					subscription_data: {
+						trial_from_plan: true,
+						metadata
+					},
+					success_url: `${getURL()}/account`,
+					cancel_url: `${getURL()}/`
+				});
+			} else if (price.type === 'one_time') {
+				session = await stripe.checkout.sessions.create({
+					payment_method_types: ['card'],
+					billing_address_collection: 'required',
+					customer,
+					customer_update: {
+						address: 'auto'
+					},
+					line_items: [
+						{
+							price: price.id,
+							quantity
+						}
+					],
+					mode: 'payment',
+					allow_promotion_codes: true,
+					success_url: `${getURL()}/profile`,
+					cancel_url: `${getURL()}/`
+				});
+			}
 
-	let lineItems: any = [];
-	items.forEach((item: any) => {
-		lineItems.push({ price: item.id, quantity: item.quantity });
-	});
-
-	// It gives us a URL for the person to check out with
-	const session = await stripe.checkout.sessions.create({
-		line_items: lineItems,
-		mode: 'payment',
-		success_url: 'http://localhost:5173/success',
-		cancel_url: 'http://localhost:5173/cancel'
-	});
-
-	return new Response(
-		JSON.stringify({ url: session.url }), // frontend will get this url to redirect
-		{
-			status: 200,
-			headers: { 'content-type': 'application/json' }
+			if (session) {
+				return new Response(JSON.stringify({ sessionId: session.id }), {
+					status: 200
+				});
+			} else {
+				return new Response(
+					JSON.stringify({
+						error: { statusCode: 500, message: 'Session is not defined' }
+					}),
+					{ status: 500 }
+				);
+			}
+		} catch (err: any) {
+			console.log(err);
+			return new Response(JSON.stringify(err), { status: 500 });
 		}
-	);
-};
+	} else {
+		return new Response('Method Not Allowed', {
+			headers: { Allow: 'POST' },
+			status: 405
+		});
+	}
+}
