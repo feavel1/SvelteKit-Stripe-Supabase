@@ -7,6 +7,7 @@ import {
 	upsertPriceRecord,
 	manageSubscriptionStatusChange
 } from '$lib/utils/supabase-admin';
+import type { RequestEvent } from '@sveltejs/kit';
 
 const relevantEvents = new Set([
 	'product.created',
@@ -19,8 +20,8 @@ const relevantEvents = new Set([
 	'customer.subscription.deleted'
 ]);
 
-export async function POST({ request }: any) {
-	const body = await request.buffer();
+export async function POST({ request }: RequestEvent) {
+	const body = await request.text();
 
 	const sig = request.headers.get('Stripe-Signature') as string;
 
