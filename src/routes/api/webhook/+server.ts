@@ -19,10 +19,10 @@ const relevantEvents = new Set([
 	'customer.subscription.deleted'
 ]);
 
-export async function POST(req: Request) {
-	const body = await req.json();
+export async function POST({ request }: any) {
+	const body = await request.json();
 
-	const sig = req.headers.get('Stripe-Signature') as string;
+	const sig = request.headers.get('Stripe-Signature') as string;
 
 	const webhookSecret = STRIPE_WEBHOOK_SECRET;
 	let event: Stripe.Event;
