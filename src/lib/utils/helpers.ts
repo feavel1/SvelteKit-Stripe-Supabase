@@ -1,7 +1,6 @@
 import type { Database } from '$lib/supabase/types_db';
-import { PUBLIC_SITE_URL } from '$env/static/public';
-
 type Price = Database['public']['Tables']['prices']['Row'];
+import { PUBLIC_SITE_URL } from '$env/static/public';
 
 export const getURL = () => {
 	let url =

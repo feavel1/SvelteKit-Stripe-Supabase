@@ -1,11 +1,13 @@
-<script>
-	import SubscriptionCard from '$lib/components/ui/SubscriptionCard.svelte';
+<script lang="ts">
+	import Subscription from '$lib/components/ui/Subscription.svelte';
+
+	import type { PageData } from './$types';
+
+	export let data: PageData;
+	let { supabase, session, subscription, products } = data;
+	$: ({ supabase, session } = data);
 </script>
 
 <h1 class="h1">Subscription Page</h1>
 
-<div class="grid grid-cols-3 gap-3">
-	<SubscriptionCard price="25" />
-	<SubscriptionCard price="45" />
-	<SubscriptionCard price="65" />
-</div>
+<Subscription {products} {subscription} {session} />

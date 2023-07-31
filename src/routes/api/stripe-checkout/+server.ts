@@ -10,13 +10,11 @@ export async function POST({ request, locals: { getSession } }: any) {
 		try {
 			// 2. Get the user session from Supabase auth
 			const supabaseSession = await getSession();
-
 			// 3. Retrieve or create the customer in Stripe
 			const customer = await createOrRetrieveCustomer({
 				uuid: supabaseSession?.user.id || '',
 				email: supabaseSession?.user.email || ''
 			});
-
 			// 4. Create a checkout session in Stripe
 			let session;
 			if (price.type === 'recurring') {
@@ -39,7 +37,7 @@ export async function POST({ request, locals: { getSession } }: any) {
 						trial_from_plan: true,
 						metadata
 					},
-					success_url: `${getURL()}/account`,
+					success_url: `${getURL()}/profile`,
 					cancel_url: `${getURL()}/`
 				});
 			} else if (price.type === 'one_time') {
