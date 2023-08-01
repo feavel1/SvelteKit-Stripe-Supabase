@@ -4,8 +4,8 @@
 	import type { PageData } from './$types';
 
 	export let data: PageData;
-	let { supabase, session, subscription, products } = data;
-	$: ({ supabase, session } = data);
+	let { session, subscription, products } = data;
+	$: ({ session } = data);
 </script>
 
 <h1 class="h1">Subscription Page</h1>
