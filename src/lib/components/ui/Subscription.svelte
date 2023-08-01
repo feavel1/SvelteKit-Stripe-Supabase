@@ -63,13 +63,17 @@
 						{showPriceString(product, billingInterval)}
 						<span class="text-base font-medium text-zinc-100 capitalize"> / {billingInterval}</span>
 					</span>
-					<button
-						on:click={() => handleCheckout(product)}
-						class="btn variant-filled-primary"
-						disabled={session ? false : true}
-					>
-						Subscribe
-					</button>
+					{#if subscription}
+						<a class="btn variant-filled-primary" href="/profile">Manage subscription</a>
+					{:else}
+						<button
+							on:click={() => handleCheckout(product)}
+							class="btn variant-filled-primary"
+							disabled={session ? false : true}
+						>
+							Subscribe
+						</button>
+					{/if}
 				</div>
 			</div>
 		</section>
