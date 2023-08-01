@@ -1,4 +1,4 @@
-// src/routes/api/protected-route/+server.js
+// src/routes/api/protected-route/+server.ts
 import { json, fail } from '@sveltejs/kit';
 import { STRIPE_SECRET } from '$env/static/private';
 import initStripe from 'stripe';

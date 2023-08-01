@@ -6,7 +6,7 @@
 
 	export let products: any, subscription: any, session: any;
 
-	let billingInterval = 'year';
+	let billingInterval = 'month';
 
 	function showPriceString(product: any, billingInterval: string) {
 		const price = product?.prices?.find((price: any) => price.interval === billingInterval);

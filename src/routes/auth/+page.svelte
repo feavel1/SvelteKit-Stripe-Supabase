@@ -5,6 +5,9 @@
 	let { supabase, session } = data;
 	$: ({ supabase, session } = data);
 
+	if (session) {
+		goto('/profile');
+	}
 	/**
 	 * @type {string}
 	 */
@@ -16,10 +19,6 @@
 	let password;
 
 	let loading = false;
-
-	if (session) {
-		goto('/profile');
-	}
 
 	const handleSignIn = async () => {
 		try {

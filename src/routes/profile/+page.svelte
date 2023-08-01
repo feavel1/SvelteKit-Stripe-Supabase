@@ -1,10 +1,12 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { postData } from '$lib/utils/helpers.js';
+	import { postData } from '$lib/utils/helpers';
 
 	export let data;
 	let { supabase, session, subscription } = data;
 	$: ({ session, supabase } = data);
+
+	let loading = false;
 
 	const subscriptionPrice =
 		subscription &&
@@ -18,6 +20,7 @@
 	};
 
 	const redirectToCustomerPortal = async () => {
+		loading = true;
 		try {
 			const { url } = await postData({
 				url: '/api/create-portal-link'
@@ -25,13 +28,15 @@
 			goto(url);
 		} catch (error) {
 			if (error) return alert((error as Error).message);
+		} finally {
+			loading = false;
 		}
 	};
 
 	const interval = subscription?.prices?.interval;
 </script>
 
-<h1 class="h1">Profile Overview</h1>
+<h1 class="h1 font-thin">Profile Overview</h1>
 <section>
 	{#if !session}
 		<div>Not logged in</div>
@@ -52,7 +57,7 @@
 				{/if}
 			</div>
 			<button class="btn m-4 variant-filled-tertiary" on:click={redirectToCustomerPortal}>
-				Open customer portal
+				{loading == false ? 'Open customer portal' : 'loading customer portal...'}
 			</button>
 		</div>
 

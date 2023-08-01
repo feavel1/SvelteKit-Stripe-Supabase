@@ -12,3 +12,17 @@
 		<a href="https://kit.svelte.dev" class="logo-item">Type Script</a>
 	</div>
 </section>
+
+<h1 class="h1 font-thin">Go to supbscirptions</h1>
+
+<a href="/subscription" class="logo-item">Subscriptions</a>
+
+<h1 class="h1 font-thin">Login / Signup</h1>
+
+<a href="/auth" class="logo-item">Auth</a>
+
+<h1 class="h1 font-thin">Setup project</h1>
+
+<p>See github</p>
+
+<a href="https://github.com/feavel1/4S-Stack" class="logo-item">4S-Stack</a>
