@@ -28,7 +28,7 @@
 		}
 	};
 
-	const interval = subscription.prices?.interval;
+	const interval = subscription?.prices?.interval;
 </script>
 
 <h1 class="h1">Profile Overview</h1>

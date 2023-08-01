@@ -10,11 +10,11 @@ Skeleton UI
 - [x] Login
 - [x] Updata user details
 - [ ] Products Menu
-- [ ] Subsription Menu
-- [ ] Webhooks
+- [x] Subsription Menu
+- [x] Webhooks
 
 ## Notes
 
-- Newest Svelte version (v4.1.1).
+- Newest Svelte version (v4.1.2).
 - Supabase auth v0.10 PKCE (Proof Key for Code Exchange).
 - Skeleton v1.10
