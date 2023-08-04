@@ -18,11 +18,11 @@
 		"@tailwindcss/forms": "^0.5.4",
 		"autoprefixer": "^10.4.14",
 		"eslint": "^8.46.0",
-		"eslint-config-prettier": "^8.9.0",
+		"eslint-config-prettier": "^8.10.0",
 		"eslint-plugin-svelte": "^2.32.4",
 		"postcss": "^8.4.27",
 		"postcss-load-config": "^4.0.1",
-		"prettier": "^3.0.0",
+		"prettier": "^3.0.1",
 		"prettier-plugin-svelte": "^3.0.3",
 		"svelte": "^4.1.2",
 		"svelte-check": "^3.4.6",
@@ -36,6 +36,6 @@
 		"@supabase/auth-helpers-sveltekit": "^0.10.2",
 		"@supabase/supabase-js": "^2.31.0",
 		"highlight.js": "^11.8.0",
-		"stripe": "^12.16.0"
+		"stripe": "^12.17.0"
 	}
 }
