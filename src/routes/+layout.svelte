@@ -1,11 +1,17 @@
 <script lang="ts">
 	// Styles and CSS
-	import '@skeletonlabs/skeleton/themes/theme-skeleton.css';
-	import '@skeletonlabs/skeleton/styles/skeleton.css';
+
 	import '../app.postcss';
 	import hljs from 'highlight.js';
 	import 'highlight.js/styles/github-dark.css';
-	import { AppShell, AppBar, storeHighlightJs, Drawer, drawerStore } from '@skeletonlabs/skeleton';
+	import {
+		AppShell,
+		AppBar,
+		storeHighlightJs,
+		Drawer,
+		initializeStores,
+		getDrawerStore
+	} from '@skeletonlabs/skeleton';
 
 	storeHighlightJs.set(hljs);
 
@@ -34,6 +40,10 @@
 
 		return () => subscription.unsubscribe();
 	});
+
+	initializeStores();
+
+	const drawerStore = getDrawerStore();
 
 	function drawerOpen(): void {
 		drawerStore.open({});

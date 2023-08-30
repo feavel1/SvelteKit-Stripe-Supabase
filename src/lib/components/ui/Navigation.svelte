@@ -1,6 +1,8 @@
 <script lang="ts">
 	export let session: any;
-	import { drawerStore } from '@skeletonlabs/skeleton';
+	import { getDrawerStore } from '@skeletonlabs/skeleton';
+
+	const drawerStore = getDrawerStore();
 
 	function drawerClose(): void {
 		drawerStore.close();

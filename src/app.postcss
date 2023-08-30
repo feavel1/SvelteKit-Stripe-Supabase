@@ -2,10 +2,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@tailwind variants;
 
-html, body { @apply h-full; }
+/*! purgecss start ignore */
+html,
+body {
+	@apply h-full;
+}
 
 :root {
 	--theme-rounded-base: 12px;
 	--theme-rounded-container: 4px;
 }
+/*! purgecss end ignore */
