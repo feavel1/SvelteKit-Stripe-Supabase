@@ -15,9 +15,9 @@ Skeleton UI
 
 ## Notes
 
-- ⚡️ Currentlly Newest Svelte version (v4.1.2).
-- 🔐 Newest Supabase auth v0.10.1 PKCE (Proof Key for Code Exchange).
-- 🎨 Newest Skeleton v1.10
+- ⚡️ Currentlly Newest Svelte version (v4.2.0).
+- 🔐 Newest Supabase auth v0.10.2 PKCE (Proof Key for Code Exchange).
+- 🎨 Newest Skeleton v2.0
 - 📱 Phone navbar support
 - 🔒 I use +page.ts where it's safe (where I don't use any private keys like Subscription page, Profile page etc). 
   - But if it uses private keys make sure to hide into +server.ts and +page.server.ts. Private keys SHOULD NEVER be sent to the client.
