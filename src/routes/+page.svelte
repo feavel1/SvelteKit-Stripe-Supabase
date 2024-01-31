@@ -13,7 +13,7 @@
 	</div>
 </section>
 
-<h1 class="h1 font-thin">Go to supbscirptions</h1>
+<h1 class="h1 font-thin">Go to subscriptions</h1>
 
 <a href="/subscription" class="logo-item">Subscriptions</a>
 
