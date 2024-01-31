@@ -10,7 +10,7 @@ Skeleton UI
 - [X]  Login
 - [X]  Updata user details
 - [X]  Webhooks
-- [X]  Subsription Menu
+- [X]  Subscription Menu
 - [ ]  Products Menu (Maybe will add some day)
 
 ## Notes
@@ -47,7 +47,7 @@ gh repo clone feavel1/4S-Stack
 
 #### Setup Stripe webhook
 
-- After that create a Stripe account (you don't have to verifiy your account, because I can not verify mine, because I am under Unitad States 🇺🇸 sanctions, because I am Russian 🇷🇺 btw. FREE WORLD DEMOCRACY 😅) If you are interested in colaborating, email me lol, I check email everyday. Btw I speek Chinese 🇨🇳 btw.
+- After that create a Stripe account (you don't have to verify your account, because I can not verify mine, because I am under Unitad States 🇺🇸 sanctions, because I am Russian 🇷🇺 btw. FREE WORLD DEMOCRACY 😅) If you are interested in colaborating, email me lol, I check email everyday. Btw I speek Chinese 🇨🇳 btw.
 
   - After that you can get your stripe keys. And set up the webhook. Make sure to say U! S! A!. Some time it calms the big brother corporations.
 - Next copy the https://your-domain.vercel.app/api/webhook to stripe and create the webhook. Make sure to tag 'Listen to all events'.
